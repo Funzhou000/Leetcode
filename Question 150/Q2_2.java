@@ -4,31 +4,29 @@ public class Q2_2 {
     public static void main(String[] args) {
         int[] nums = { 0, 1, 2, 2, 3, 0, 4, 2 };
         int val = 2;
-        int count = nums.length;
-        for (int i = 0; i < nums.length;) {
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
             if (nums[i] == val) {
-                move(nums, i);
-                if (nums[i] != val) {
-                    i++;
-                }
-
+                count++;
             }
         }
-        System.out.println(count);
+        for (int i = 0; i < nums.length - count; i++) {
+            // 指向当前数
+            while (nums[i] == val) {
+                moves(nums, i);
+            }
+        }
         System.out.println(Arrays.toString(nums));
+
     }
 
-    public static void move(int[] nums, int index) {
-
-        for (int i = index; i < nums.length; i++) {
-            if (i != nums.length - 1) {
-                int temp = 0;
-                temp = nums[i];
-                nums[i] = nums[i + 1];
-                nums[i + 1] = temp;
-            }
+    public static void moves(int[] nums, int i) {
+        // 传递数组和当前索引
+        for (int j = i; j <= nums.length - 2; j++) {
+            int temp = nums[j];
+            nums[j] = nums[j + 1];
+            nums[j + 1] = temp;
         }
 
     }
-
 }
